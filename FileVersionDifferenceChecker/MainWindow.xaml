@@ -1,0 +1,33 @@
+﻿<Window x:Class="FileVersionDifferenceChecker.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FileVersionDifferenceChecker"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="350" Width="525">
+    <Window.DataContext>
+        <local:MainWindowViewModel/>
+    </Window.DataContext>
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="120" />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <StackPanel>
+            <Label Content="Folder Path 1"/>
+            <TextBox Name="Folder1" Text="{Binding FilePath1}"/>
+            <Label Content="Folder Path 2"/>
+            <TextBox Name="Folder2" Text="{Binding FilePath2}"/>
+            <StackPanel Orientation="Horizontal">
+                <Button Content="Get Differences" HorizontalAlignment="Left" VerticalAlignment="Top" Command="{Binding GetDifferencesCommand}"/>
+                <Button Content="Export Differences" HorizontalAlignment="Right" VerticalAlignment="Bottom" Command="{Binding ExportDifferencesCommand}" />
+            </StackPanel>
+        </StackPanel>
+
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Differences, Mode=OneWay}"/>
+
+    </Grid>
+</Window>
